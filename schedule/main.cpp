@@ -1,12 +1,11 @@
-#include "time.h"
-#include "teacher.h"
-#include "lesson.h"
-#include <iostream>
-#include <string>
-using namespace std;
-int main()
-{
+#include "widget.h"
+#include <QApplication>
 
-    system("PAUSE");
-    return EXIT_SUCCESS;
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    Widget w;
+    w.show();
+    
+    return a.exec();
 }

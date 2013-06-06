@@ -1,21 +1,7 @@
-#include "lesson.h"
+#include "Lesson.h"
 
-lesson::lesson(string title, bool kind) // about the kinds, 1 for special and 0 for general
+Lesson :: Lesson(QString n, int h)
 {
-     lesson_name=title;
-     lesson_kind=kind;
-    //ctor
-    
+    this->name = n;
+    this->hours = h;
 }
-
-lesson::~lesson()
-{
-    //dtor
-}
-lesson* math("math",true);
-lesson* geo("geometry",true);
-lesson* phys("pysics",true);
-lesson* farsi("farsi",false);
-lesson* arabic("Arabic",false);
-lesson* theo("dini",false);
-lesson* dif("difrensial",true);

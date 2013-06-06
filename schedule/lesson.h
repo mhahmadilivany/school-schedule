@@ -1,16 +1,20 @@
 #ifndef LESSON_H
 #define LESSON_H
-#include <string>
 
+#include <QString>
+#include <QVector>
 
-class lesson
+class Lesson
 {
-    public:
-        lesson(string title, bool kind);
-        virtual ~lesson();
-    protected:
-    private:
-        string lesson_name;
-        bool lesson_kind;
+private:
+    QString name;
+    int hours;
+public:
+    Lesson(QString n){this->name = n;}
+    Lesson(int h){this->hours = h;}
+    Lesson(QString,int);
+
 };
+
+
 #endif // LESSON_H

@@ -1,21 +1,33 @@
 #ifndef TEACHER_H
 #define TEACHER_H
-#include <string>
-#include "teacher.h"
-#include "lesson.h"
-#include "time.h"
+
+#include "Lesson.h"
+#include "Day.h"
+
+#include <QWidget>
+#include <QString>
+#include <QVector>
 
 
-class teacher
+class Teacher : public QWidget
 {
-    public:
-        teacher(string name,lesson lessons[5],mtime freetime[4]);
-        virtual ~teacher();
-    protected:
-    private:
-    string teacher_name;
-    lesson teacher_lessons[5];
-    mtime teacher_freetime[4];
+    Q_OBJECT
+
+private:
+    QString name;
+    QVector<Lesson>les;
+    QVector<Day>day;
+
+public:
+    Teacher(QWidget *parent = 0);
+    //Teacher(QString n){this->name = n;}
+    //Teacher(QVector<Lesson>l){this->les = l;}
+    //Teacher(QVector<Day>d){this->day = d;}
+
+
 };
+
+
+
 
 #endif // TEACHER_H
