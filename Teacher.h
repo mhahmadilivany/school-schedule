@@ -7,6 +7,9 @@
 #include <QWidget>
 #include <QString>
 #include <QVector>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QVBoxLayout>
 
 
 class Teacher : public QWidget
@@ -20,9 +23,13 @@ private:
 
 public:
     Teacher(QWidget *parent = 0);
-    //Teacher(QString n){this->name = n;}
-    //Teacher(QVector<Lesson>l){this->les = l;}
-    //Teacher(QVector<Day>d){this->day = d;}
+    Teacher(QString n){this->name = n;}
+    Teacher(QVector<Lesson>l){this->les = l;}
+    Teacher(QVector<Day>d){this->day = d;}
+
+public slots:
+    void Make_LineEdit();
+
 
 
 };
