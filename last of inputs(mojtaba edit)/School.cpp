@@ -1,4 +1,6 @@
 #include "School.h"
+
+
 School :: School(QWidget *parent)
     : QWidget(parent)
 {
@@ -216,5 +218,3 @@ void School :: Open_info()
     msgbox->setText(NameOfTeachers);
     msgbox->show();
 }
-
-

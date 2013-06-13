@@ -12,14 +12,16 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QVBoxLayout>
+#include <QGroupBox>
 
 
-class Teacher     //public QWidget
+class Teacher : public QWidget,public lesson_maker,public School
 {
-    //Q_OBJECT
+    Q_OBJECT
 
 private:
-
+    QComboBox *combo;
+    QComboBox *combo2;
 
 public:
     Teacher();
@@ -31,6 +33,8 @@ public:
     Teacher(QList <Lesson> l);//{this->les = l;}
     Teacher(QList <Day> d);//{this->day = d;}
 
+public slots:
+    setLesson();
 
 };
 
