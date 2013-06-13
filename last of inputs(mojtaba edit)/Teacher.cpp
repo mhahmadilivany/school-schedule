@@ -35,7 +35,7 @@ Teacher :: Teacher(QWidget *parent)
     hb->addWidget(combo);
     hb->addWidget(combo2);
     hb->addWidget(push);
-    QGroupBox *group = new QGroup(this);
+    QGroupBox *group = new QGroupBox(this);
     group->setLayout(hb);
     connect(push,SIGNAL(clicked()),this,SLOT(setLesson()));
 }
