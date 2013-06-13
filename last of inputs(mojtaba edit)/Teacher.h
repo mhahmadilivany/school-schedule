@@ -34,7 +34,7 @@ public:
     Teacher(QList <Day> d);//{this->day = d;}
 
 public slots:
-    setLesson();
+    void setLesson();
 
 };
 
