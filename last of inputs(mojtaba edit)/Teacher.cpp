@@ -40,7 +40,7 @@ Teacher :: Teacher(QWidget *parent)
     connect(push,SIGNAL(clicked()),this,SLOT(setLesson()));
 }
 
-Teacher :: setLesson()
+void Teacher :: setLesson()
 {
     list_of_teachers[list_of_teachers.indexOf(combo->currentText())].l.append(list_of_lessons[list_of_lessons.indexOf(combo->currentText())]);  //dars ro ba moallem set mikone be torike hardo ro az liste khodeshun dar miare ke moshakhasateshun bahashun bian
 
