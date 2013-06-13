@@ -41,14 +41,6 @@ lesson_maker :: lesson_maker(QWidget *parent)
 
     gforekhorom = new QGroupBox;
     hforekhorom = new QHBoxLayout;
-    //hforekhorom->addWidget(line2);
-   // hforekhorom->addWidget(hoursofteachin);
-    //hforekhorom->addWidget(ekhorom);
-   // hforekhorom->addWidget(ekhorom2);
-   // hforekhorom->addWidget(line);
-
-    //vb->addWidget(line);
-   // gforekhorom->setLayout(hforekhorom);
     foreachlessonv->addLayout(foreachlessonh1);
     foreachlessonv->addLayout(foreachlessonh2);
     foreachlessonv->addLayout(foreachlessonh3);
