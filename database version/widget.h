@@ -8,6 +8,7 @@
 #include <QGroupBox>
 #include "School.h"
 #include "Lesson.h"
+#include "classes.h"
 #include "lesson_maker.h"
 
 
@@ -17,6 +18,7 @@ class Widget : public QWidget
 private:
     School s;
     lesson_maker j;
+    Classes c;
 
 
 public:
@@ -25,10 +27,22 @@ public:
     QLabel *wel;
     QPushButton *ok;
     QPushButton *ok2;
+    QPushButton *tanzim;
+    QPushButton *kelas;
+    QPushButton *setemoallemodars;
+    QPushButton *quit;
     QVBoxLayout *vb;
+
+
     ~Widget();
 public slots:
     void open_spage();
     void open_jpage();
+    void Quit();
+    void Setemoallemodars();
+    void Kelas();
+    void Tanzim();
+
+
 };
 #endif // WIDGET_H

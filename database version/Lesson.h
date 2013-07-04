@@ -10,9 +10,6 @@
 class Lesson
 
 {
-private:
-
-
 public:
     int hours;
     bool kind;

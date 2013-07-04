@@ -35,6 +35,7 @@ School :: School(QWidget *parent)
     forteacherline4 = new QHBoxLayout;
     forteacherline5 = new QHBoxLayout;
     forteacherline6 = new QHBoxLayout;
+    forteacherline7 = new QHBoxLayout;
     shanbe = new QLabel("شنبه:");
     yekshanbe = new QLabel("یکشنبه:");
     doshanbe = new QLabel("دوشنبه:");
@@ -42,15 +43,17 @@ School :: School(QWidget *parent)
     charshanbe = new QLabel("چهارشنبه:");
     zangs = new QLabel("                                                           زنگ اول                         زنگ دوم                         زنگ سوم                زنگ چهارم");
     name = new QLabel("نام دبیر: ");
-    QPushButton *push1 = new QPushButton("معلم جدید");
+    QPushButton *push1 = new QPushButton("ثبت معلم");
     QPushButton *push2 = new QPushButton("بازگشت");
-    QPushButton *push3 = new QPushButton("نمایش معلم های ذخیره شده");
+    QPushButton *push3 = new QPushButton("معلمهای ذخیره شده");
     line = new QLineEdit;
     QVBoxLayout *vb2 = new QVBoxLayout;
+    QLabel *busytimes = new QLabel("در این جدول ساعاتی که این معلم نمیتواند در مدرسه باشد را مشخص کنید: ");
     gb1->setLayout(vb2);
 
     forteacherline1->addWidget(line);
     forteacherline1->addWidget(name);
+    forteacherline7->addWidget(busytimes);
     forteacherline0->addWidget(zangs);
     forteacherline2->addWidget(sh1);
     forteacherline2->addWidget(sh2);
@@ -78,6 +81,7 @@ School :: School(QWidget *parent)
     forteacherline6->addWidget(ch4);
     forteacherline6->addWidget(charshanbe);
     vb->addLayout(forteacherline1);
+    vb->addLayout(forteacherline7);
     vb->addLayout(forteacherline0);
     vb->addLayout(forteacherline2);
     vb->addLayout(forteacherline3);
@@ -85,18 +89,32 @@ School :: School(QWidget *parent)
     vb->addLayout(forteacherline5);
     vb->addLayout(forteacherline6);
 
+    setter = new QWidget;
+    QPushButton *sabtedorosemoallem = new QPushButton("ثبت");
+    QPushButton *apply = new QPushButton("تایید");
+    QPushButton *next = new QPushButton("معلم بعدی");
+    QLabel *tozih = new QLabel("در این قسمت دروسی که هر معلم میتواند تدریس کند را وارد کرده و بر روی دکمه ثبت کلیک کنید");
+
+
     gb2->setLayout(vb);
     mainlayout->addWidget(gb2);
     mainlayout->addWidget(gb1);
     vb2->addWidget(push1);
     vb2->addWidget(push3);
     vb2->addWidget(push2);
-    connect(push1,SIGNAL(clicked()),this,SLOT(Make_LineEdit()));  //new LineEdit will be made by clicking on the push1 button
-    connect(push2,SIGNAL(clicked()),this,SLOT(Open_CPage()));   //the last LineEdit will be saved and next page will e open
+    connect(push1,SIGNAL(clicked()),this,SLOT(sabte_moallem()));
+    connect(push2,SIGNAL(clicked()),this,SLOT(Open_CPage()));
     connect(push3,SIGNAL(clicked()),this,SLOT(Open_info()));
+
+    db = QSqlDatabase :: addDatabase("QSQLITE");
+    db.setDatabaseName("Teacher.db");
+    db.open();
+    QSqlQuery query;
+    query.exec("create table teachers (name text, hours text");
 }
 
-void School :: Make_LineEdit()
+
+void School :: sabte_moallem()
 {
     if(line->text()==""){
         QMessageBox *message = new QMessageBox;
@@ -134,47 +152,107 @@ void School :: Make_LineEdit()
     t.day[4].z2=true;
     t.day[4].z3=true;
     t.day[4].z4=true;
-    this->list_of_teachers.append(t);
-    if (sh1->isChecked()==true)
+    QString times = "";
+    if (sh1->isChecked()==true){
         t.day[0].z1=false;
-    else if (sh2->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (sh2->isChecked()==true){
         t.day[0].z2=false;
-    else if (sh3->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (sh3->isChecked()==true){
         t.day[0].z3=false;
-    else if (sh4->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (sh4->isChecked()==true){
         t.day[0].z4=false;
-    else if (y1->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (y1->isChecked()==true){
         t.day[1].z1=false;
-    else if (y2->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (y2->isChecked()==true){
         t.day[1].z2=false;
-    else if (y3->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (y3->isChecked()==true){
         t.day[1].z3=false;
-    else if (y4->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (y4->isChecked()==true){
         t.day[1].z4=false;
-    else if (d1->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (d1->isChecked()==true){
         t.day[2].z1=false;
-    else if (d2->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (d2->isChecked()==true){
         t.day[2].z2=false;
-    else if (d3->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (d3->isChecked()==true){
         t.day[2].z3=false;
-    else if (d4->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (d4->isChecked()==true){
         t.day[2].z4=false;
-    else if (s1->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (s1->isChecked()==true){
         t.day[3].z1=false;
-    else if (s2->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (s2->isChecked()==true){
         t.day[3].z2=false;
-    else if (s3->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (s3->isChecked()==true){
         t.day[3].z3=false;
-    else if (s4->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (s4->isChecked()==true){
         t.day[3].z4=false;
-    else if (ch1->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (ch1->isChecked()==true){
         t.day[4].z1=false;
-    else if (ch2->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (ch2->isChecked()==true){
         t.day[4].z2=false;
-    else if (ch3->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (ch3->isChecked()==true){
         t.day[4].z3=false;
-    else if (ch4->isChecked()==true)
+        times += "0";
+    }else{times += "1";}
+
+    if (ch4->isChecked()==true){
         t.day[4].z4=false;
+        times += "0";
+    }else{times += "1";}
+
     line->setText("");
     sh1->setChecked(false);
     sh2->setChecked(false);
@@ -196,28 +274,39 @@ void School :: Make_LineEdit()
     ch2->setChecked(false);
     ch3->setChecked(false);
     ch4->setChecked(false);
-    NameOfTeachers.append(t.name);
-    NameOfTeachers.append("\n");
     list_of_teachers.append(t);
-    }
 
+    }
 }
 
 void School :: Open_CPage()
 {
-    Teacher t(line->text());
+    //this->close();
+    /*QSqlTableModel *model = new QSqlTableModel;
+    model->setTable("lessons");
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    model->select();
+    QTableView *view = new QTableView;
+    view->setModel(model);
+    view->show();*/
+    QSqlTableModel *model = new QSqlTableModel;
+    model->setTable("teachers");
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    model->select();
+    QTableView *view = new QTableView;
+    view->setModel(model);
+    view->show();
 
-    this->list_of_teachers.append(t);
-    c.show();
-    this->close();
 }
+
 void School :: Open_info()
 {
+
     QMessageBox *msgbox = new QMessageBox;
-    msgbox->setText(NameOfTeachers);
+    //msgbox->setText(s);
     msgbox->show();
 }
 
-
-
-
+School ::School(QList<Teacher> t){
+    list_of_teachers = t;
+}

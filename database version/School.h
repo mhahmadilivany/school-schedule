@@ -10,16 +10,18 @@
 #include <QCheckBox>
 #include <QList>
 #include "Teacher.h"
-#include "Class.h"
+#include "classes.h"
 #include "Day.h"
 #include <QGridLayout>
 #include <QtDebug>
-
+#include <QtSql>
 
 class School : public QWidget
 {
     Q_OBJECT
+
 private:
+    QWidget *setter;
     QList <Teacher> list_of_teachers;
     QVBoxLayout *vb;
     QHBoxLayout *mainlayout;
@@ -39,23 +41,21 @@ private:
     QHBoxLayout *forteacherline4;
     QHBoxLayout *forteacherline5;
     QHBoxLayout *forteacherline6;
+    QHBoxLayout *forteacherline7;
     QLabel *shanbe,*yekshanbe,*doshanbe,*seshanbe,*charshanbe;
     QLabel *zangs;
-    QString NameOfTeachers;
     QLabel *name;
-
-    Class c;
+    QSqlDatabase db;
 
 public:
-
-    School(QList<Teacher>t){list_of_teachers = t;} //sets the vector entered as the member function
-    School(QWidget *parent = 0);  //to make a widget that the names of the school teacher will be entered
+    School(QList<Teacher>t);
+    School(QWidget *parent = 0);
 
 public slots:
-    void Make_LineEdit();  //to save the content of the last QLineEdit and make a new QLineEdit in the page
-    void Open_CPage();     //to open the next page
+    void sabte_moallem();
+    void Open_CPage();
     void Open_info();
-    };
+};
 
 
 #endif // SCHOOL_H

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,14 +17,16 @@ SOURCES += main.cpp\
     Teacher.cpp \
     Lesson.cpp \
     Day.cpp \
-    Class.cpp \
     School.cpp \
-    lesson_maker.cpp
+    lesson_maker.cpp \
+    schoolclass.cpp \
+    classes.cpp
 
 HEADERS  += widget.h \
     Teacher.h \
     Lesson.h \
     Day.h \
-    Class.h \
     School.h \
-    lesson_maker.h
+    lesson_maker.h \
+    schoolclass.h \
+    classes.h
