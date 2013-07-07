@@ -37,7 +37,6 @@ Classes::Classes(QWidget *parent) :
     connect(back,SIGNAL(clicked()),this,SLOT(Quit()));
 
     QSqlQuery query;
-    QList<QString>l;
     query.exec("select name,hour,kind from lessons;");
     while(query.next()){
         QString n = query.value(0).toString();
@@ -47,9 +46,7 @@ Classes::Classes(QWidget *parent) :
         if(k == 1)ki = true;
         Lesson q(n,h,ki);
         class_lessons.append(q);
-        l.append(n);
     }
-    for(int i =0;i<l.size();i++) lessoncombo->addItem(l[i]);
 
     db2 = QSqlDatabase :: addDatabase("QSQLITE");
     db2.setDatabaseName("Classes.db");

@@ -64,9 +64,7 @@ lesson_maker :: lesson_maker(QWidget *parent)
     db.open();
     QSqlQuery query;
     query.exec("CREATE TABLE lessons (name text,hour int,kind int);");
-
 }
-
 void lesson_maker :: Make_LineEdit()
 {
     if(line->text()=="" && line2->text()=="" && ekhorom->isChecked()==false && ekhorom2->isChecked()==false){
@@ -130,6 +128,7 @@ void lesson_maker :: Make_LineEdit()
 }
 void lesson_maker :: Open_CPage()
 {
+
     Lesson t(line->text());
     list_of_lessons.append(t);
     this->close();

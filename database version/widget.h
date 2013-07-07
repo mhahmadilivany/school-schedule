@@ -10,6 +10,7 @@
 #include "Lesson.h"
 #include "classes.h"
 #include "lesson_maker.h"
+#include "setter.h"
 
 
 class Widget : public QWidget
@@ -19,6 +20,7 @@ private:
     School s;
     lesson_maker j;
     Classes c;
+    Setter Setting;
 
 
 public:

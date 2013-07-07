@@ -32,6 +32,7 @@ public:
     Teacher(QString n);//{this->name = n;}
     Teacher(QList <Lesson> l);//{this->les = l;}
     Teacher(QList <Day> d);//{this->day = d;}
+
 };
 
 

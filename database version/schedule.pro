@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     School.cpp \
     lesson_maker.cpp \
     schoolclass.cpp \
-    classes.cpp
+    classes.cpp \
+    setter.cpp
 
 HEADERS  += widget.h \
     Teacher.h \
@@ -29,4 +30,5 @@ HEADERS  += widget.h \
     School.h \
     lesson_maker.h \
     schoolclass.h \
-    classes.h
+    classes.h \
+    setter.h

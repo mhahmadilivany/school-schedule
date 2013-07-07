@@ -3,10 +3,6 @@
 Teacher :: Teacher(QString n)
 {
     name=n;
-
-
-
-
 }
 Teacher :: Teacher(QList<Day> d)
 {

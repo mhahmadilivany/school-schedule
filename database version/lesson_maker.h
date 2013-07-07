@@ -48,7 +48,7 @@ private:
     QPushButton *push4;
     QLineEdit *line2;
     QLabel *hoursofteachin;
-    int z = 0;
+    int z=0;
     QSqlDatabase db;
 
 public:
@@ -57,6 +57,7 @@ public:
     lesson_maker(QWidget *parent = 0);
     //QList getList_of_lessons();
     friend class classes;
+    friend class widget;
 public slots:
     void Make_LineEdit();  //to save the content of the last QLineEdit and make a new QLineEdit in the page
     void Open_CPage();     //to open the next page

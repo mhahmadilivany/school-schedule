@@ -95,7 +95,6 @@ School :: School(QWidget *parent)
     QPushButton *next = new QPushButton("معلم بعدی");
     QLabel *tozih = new QLabel("در این قسمت دروسی که هر معلم میتواند تدریس کند را وارد کرده و بر روی دکمه ثبت کلیک کنید");
 
-
     gb2->setLayout(vb);
     mainlayout->addWidget(gb2);
     mainlayout->addWidget(gb1);
@@ -103,16 +102,13 @@ School :: School(QWidget *parent)
     vb2->addWidget(push3);
     vb2->addWidget(push2);
     connect(push1,SIGNAL(clicked()),this,SLOT(sabte_moallem()));
-    connect(push2,SIGNAL(clicked()),this,SLOT(Open_CPage()));
+    connect(push2,SIGNAL(clicked()),this,SLOT(close()));
     connect(push3,SIGNAL(clicked()),this,SLOT(Open_info()));
 
     db = QSqlDatabase :: addDatabase("QSQLITE");
-    db.setDatabaseName("Teacher.db");
+    db.setDatabaseName("Teachers.db");
     db.open();
-    QSqlQuery query;
-    query.exec("create table teachers (name text, hours text");
 }
-
 
 void School :: sabte_moallem()
 {
@@ -275,38 +271,34 @@ void School :: sabte_moallem()
     ch3->setChecked(false);
     ch4->setChecked(false);
     list_of_teachers.append(t);
-
+    QSqlQuery query;
+    query.exec("INSERT INTO teachers VALUES ('"+t.name+"','"+times+"');");
     }
-}
-
-void School :: Open_CPage()
-{
-    //this->close();
-    /*QSqlTableModel *model = new QSqlTableModel;
-    model->setTable("lessons");
-    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    model->select();
-    QTableView *view = new QTableView;
-    view->setModel(model);
-    view->show();*/
-    QSqlTableModel *model = new QSqlTableModel;
-    model->setTable("teachers");
-    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    model->select();
-    QTableView *view = new QTableView;
-    view->setModel(model);
-    view->show();
-
 }
 
 void School :: Open_info()
 {
+    QList<QString>l;
+    QSqlQuery query("select name from teachers",db);
+    while(query.next()){
+        QString v = query.value(0).toString();
+        l.append(v);
+    }
+    QString s;
+    for(int i=0;i<l.size();i++)s += l[i]+"\n";
 
     QMessageBox *msgbox = new QMessageBox;
-    //msgbox->setText(s);
+    msgbox->setText(s);
     msgbox->show();
 }
 
-School ::School(QList<Teacher> t){
+School ::School(QList<Teacher> t)
+{
     list_of_teachers = t;
+}
+
+void School::ctable()
+{
+    QSqlQuery query;
+    query.exec("CREATE TABLE teachers (name TEXT, hours TEXT);");
 }

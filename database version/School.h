@@ -50,10 +50,11 @@ private:
 public:
     School(QList<Teacher>t);
     School(QWidget *parent = 0);
+    friend class widget;
+    void ctable();
 
 public slots:
     void sabte_moallem();
-    void Open_CPage();
     void Open_info();
 };
 

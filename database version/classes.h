@@ -37,18 +37,21 @@ private:
     QVBoxLayout *classVB1;
     QVBoxLayout *classVB2;
     QVBoxLayout *classVB3;
-    QComboBox *lessoncombo;
+
     QLineEdit *classnamelineedit;
     QPushButton *sabt;
     QPushButton *showinfo;
     QPushButton *showinfolessons;
     QPushButton *sabtedars;
     QPushButton *back;
-    int x = 0;
+    QPushButton *update;
+    int x=0;
     QSqlDatabase db2;
 
 public:
     explicit Classes(QWidget *parent = 0);
+    friend class widget;
+    QComboBox *lessoncombo;
     
 signals:
     
