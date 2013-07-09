@@ -23,7 +23,8 @@ Widget::Widget(QWidget *parent)
     connect(ok2,SIGNAL(clicked()),this,SLOT(open_jpage()));
     connect(kelas,SIGNAL(clicked()),this,SLOT(Kelas()));
     connect(setemoallemodars,SIGNAL(clicked()),this,SLOT(Setemoallemodars()));
-    connect(quit,SIGNAL(clicked()),this,SLOT(Quit()));
+    connect(quit,SIGNAL(clicked()),this,SLOT(close()));
+    connect(tanzim,SIGNAL(clicked()),this,SLOT(Tanzim()));
 }
 
 Widget::~Widget()
@@ -38,13 +39,10 @@ void Widget :: open_jpage()
 {
     this->j.show();
 }
-void Widget :: Quit()
-{
-    this->close();
-}
 
 void Widget :: Tanzim()
 {
+    this->P.show();
 }
 
 void Widget :: Kelas()
@@ -69,7 +67,6 @@ void Widget :: Setemoallemodars()
 {
     QSqlQuery query;
     QList<QString>l;
-
     query.exec("select name,hour,kind from lessons;");
     while(query.next()){
         QString n = query.value(0).toString();
@@ -78,19 +75,47 @@ void Widget :: Setemoallemodars()
         bool ki = false;
         if(k == 1)ki = true;
         Lesson q(n,h,ki);
-        //setinglistlesson.append(q);
-            l.append(n);}
+        Setting.setinglistlesson.append(q);
+            l.append(n);
+    }
     for(int i =0;i<l.size();i++)
         Setting.lessonscombo->addItem(l[i]);
+
     QSqlQuery myquery;
     QList<QString>ll;
     myquery.exec("select name,hours from teachers;");
     while(myquery.next()){
         QString n = myquery.value(0).toString();
-        int h = myquery.value(1).toInt();
-        Teacher q(n);
-        //settinglistteacher.append(q);
-        ll.append(n);}
+        QString h = myquery.value(1).toString();
+        QList <Day> d;
+        int p = 1;
+        int o = 0;
+        bool b;
+        /*for(int k = 0;k < h.size();k++){
+            if(h[k] == '0')b = false;
+            else{b = true;}
+            if(p==1){
+                d.at(o).z1 = b;
+                p += 1;
+            }
+            else if(p == 2){
+                d.at(o).z2 = b;
+                p += 1;
+            }
+            else if(p == 3){
+                d.at(o).z3 = b;
+                p += 1;
+            }
+            else if(p == 4){
+                d.at(o).z4 = b;
+                p = 1;
+                o += 1;
+            }
+        }*/
+        Teacher q(n,d);
+        Setting.settinglistteacher.append(q);
+        ll.append(n);
+    }
     for(int i =0;i<ll.size();i++)
         Setting.teacherscombo->addItem(ll[i]);
     this->Setting.show();

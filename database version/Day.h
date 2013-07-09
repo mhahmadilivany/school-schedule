@@ -6,24 +6,14 @@
 
 class Day
 {
-private:
-    //QString name;
-    //hours hourses;
-
-
 public:
     bool z1;
     bool z2;
     bool z3;
     bool z4;
-    Day(QString n);//{this->name = n;}
-    Day(QList<int>h);//{this->hours = h;}
+    Day(QString n);
+    Day(QList<int>h);
     Day();
-
-
-
-
 };
-
 
 #endif // DAY_H

@@ -2,7 +2,7 @@
 School :: School(QWidget *parent)
     : QWidget(parent)
 {
-    this->setWindowTitle("School class");
+    this->setWindowTitle("make teacher");
     this->resize(300,200);
     mainlayout = new QHBoxLayout(this);
     gb1 = new QGroupBox;
@@ -104,10 +104,6 @@ School :: School(QWidget *parent)
     connect(push1,SIGNAL(clicked()),this,SLOT(sabte_moallem()));
     connect(push2,SIGNAL(clicked()),this,SLOT(close()));
     connect(push3,SIGNAL(clicked()),this,SLOT(Open_info()));
-
-    db = QSqlDatabase :: addDatabase("QSQLITE");
-    db.setDatabaseName("Teachers.db");
-    db.open();
 }
 
 void School :: sabte_moallem()
@@ -292,13 +288,9 @@ void School :: Open_info()
     msgbox->show();
 }
 
-School ::School(QList<Teacher> t)
+School :: School(QList<Teacher> t)
 {
-    list_of_teachers = t;
-}
-
-void School::ctable()
-{
-    QSqlQuery query;
-    query.exec("CREATE TABLE teachers (name TEXT, hours TEXT);");
+    for(int i = 0;i < t.size();i++){
+            list_of_teachers[i] = t[i];
+    }
 }

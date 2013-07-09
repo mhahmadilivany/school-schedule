@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     lesson_maker.cpp \
     schoolclass.cpp \
     classes.cpp \
-    setter.cpp
+    setter.cpp \
+    programming.cpp
 
 HEADERS  += widget.h \
     Teacher.h \
@@ -31,4 +32,5 @@ HEADERS  += widget.h \
     lesson_maker.h \
     schoolclass.h \
     classes.h \
-    setter.h
+    setter.h \
+    programming.h

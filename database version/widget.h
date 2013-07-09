@@ -11,18 +11,19 @@
 #include "classes.h"
 #include "lesson_maker.h"
 #include "setter.h"
+#include "programming.h"
 
 
 class Widget : public QWidget
 {
     Q_OBJECT
+
 private:
     School s;
     lesson_maker j;
     Classes c;
     Setter Setting;
-
-
+    Programming P;
 public:
 
     Widget(QWidget *parent = 0);
@@ -34,17 +35,13 @@ public:
     QPushButton *setemoallemodars;
     QPushButton *quit;
     QVBoxLayout *vb;
-
-
     ~Widget();
+
 public slots:
     void open_spage();
     void open_jpage();
-    void Quit();
     void Setemoallemodars();
     void Kelas();
     void Tanzim();
-
-
 };
 #endif // WIDGET_H

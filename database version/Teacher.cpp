@@ -2,21 +2,13 @@
 
 Teacher :: Teacher(QString n)
 {
-    name=n;
+    name = n;
 }
-Teacher :: Teacher(QList<Day> d)
+
+Teacher :: Teacher(QString n, QList<Day>d)
 {
-    //for(int i=0;i<d.length();i++)
-      //  this->day[i]=d[i];
-
-
+    name = n;
+    for(int i = 0;i < d.size();i++){
+        day[i] = d[i];
+    }
 }
-Teacher :: Teacher(QList<Lesson> l)
-{
-   // for(int j=0;j<l.length();j++)
-    //    this->les[j]=l[j];
-}
-
-
-
-

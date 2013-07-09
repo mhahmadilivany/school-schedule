@@ -17,32 +17,29 @@
 #include "Teacher.h"
 #include "School.h"
 
-
-
 class Setter : public QWidget
 {
     Q_OBJECT
+
+private:
     QPushButton *sabt;
     QPushButton *check;
-
-    QList <Lesson> setinglistlesson;
-    QList <Teacher> settinglistteacher;
     QSqlDatabase db4;
-    bool b=true;
-
+    bool b = true;
 
 public:
+    QList <Lesson> setinglistlesson;
+    QList <Teacher> settinglistteacher;
     explicit Setter(QWidget *parent = 0);
     QComboBox *teacherscombo;
     QComboBox *lessonscombo;
     void updater();
     void teacherupdater();
-    void Ctable();
-signals:
-    
+
 public slots:
     void sabtedarsforteacher();
     void checker();
+    void queryrunner();
 };
 
 #endif // SETTER_H

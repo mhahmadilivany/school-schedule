@@ -1,3 +1,4 @@
+
 #include "Day.h"
 
 Day :: Day(QList<int> h)

@@ -37,7 +37,6 @@ private:
     QVBoxLayout *classVB1;
     QVBoxLayout *classVB2;
     QVBoxLayout *classVB3;
-
     QLineEdit *classnamelineedit;
     QPushButton *sabt;
     QPushButton *showinfo;
@@ -52,16 +51,12 @@ public:
     explicit Classes(QWidget *parent = 0);
     friend class widget;
     QComboBox *lessoncombo;
-    
-signals:
-    
+
 public slots:
     void sabtekelas();
     void show_info();
     void show_info_lessons();
     void sabte_dars();
-    void Quit();
-    
 };
 
 #endif // CLASSES_H

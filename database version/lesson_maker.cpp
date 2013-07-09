@@ -5,7 +5,7 @@
 lesson_maker :: lesson_maker(QWidget *parent)
     : QWidget(parent)
 {
-    this->setWindowTitle("lesson maker");
+    this->setWindowTitle("make lesson");
     this->resize(300,200);
     mainlayout = new QHBoxLayout(this);
     foreachlessonv = new QVBoxLayout;
@@ -29,7 +29,6 @@ lesson_maker :: lesson_maker(QWidget *parent)
     push1 = new QPushButton("ثبت درس");
     push2 = new QPushButton("بازگشت");
     push3= new QPushButton("دروس ذخیره شده");
-    push4 = new QPushButton("ویرایش");
 
     line2 = new QLineEdit;
     hoursofteachin = new QLabel("ساعت تدریس در هفته: ");
@@ -51,21 +50,13 @@ lesson_maker :: lesson_maker(QWidget *parent)
     mainlayout->addWidget(gb1);
     vb2->addWidget(push1);
     vb2->addWidget(push3);
-    vb2->addWidget(push4);
     vb2->addWidget(push2);
-    connect(push1,SIGNAL(clicked()),this,SLOT(Make_LineEdit()));
-    connect(push2,SIGNAL(clicked()),this,SLOT(Open_CPage()));
+    connect(push1,SIGNAL(clicked()),this,SLOT(sabtedars()));
+    connect(push2,SIGNAL(clicked()),this,SLOT(close()));
     connect(push3,SIGNAL(clicked()),this,SLOT(Open_infopage()));
-    connect(push4,SIGNAL(clicked()),this,SLOT(edit()));
-
-
-    db = QSqlDatabase :: addDatabase("QSQLITE");
-    db.setDatabaseName("Lessons.db");
-    db.open();
-    QSqlQuery query;
-    query.exec("CREATE TABLE lessons (name text,hour int,kind int);");
 }
-void lesson_maker :: Make_LineEdit()
+
+void lesson_maker :: sabtedars()
 {
     if(line->text()=="" && line2->text()=="" && ekhorom->isChecked()==false && ekhorom2->isChecked()==false){
         QMessageBox *message = new QMessageBox;
@@ -118,21 +109,11 @@ void lesson_maker :: Make_LineEdit()
     sikind.append(QString("%1").arg(ikind));
 
     QString lesson_name = S.name;
-    //bool lesson_kind = ekhorom2->isChecked();
     QString lesson_hour;
     lesson_hour.append(QString("%1").arg(S.hours));
     QSqlQuery query;
     query.exec("insert into lessons values('"+lesson_name+"','"+lesson_hour+"','"+sikind+"')");
     }
-
-}
-void lesson_maker :: Open_CPage()
-{
-
-    Lesson t(line->text());
-    list_of_lessons.append(t);
-    this->close();
-
 }
 
 void lesson_maker :: Open_infopage()
@@ -148,15 +129,4 @@ void lesson_maker :: Open_infopage()
     QMessageBox *msgbox2 = new QMessageBox;
     msgbox2->setText(s);
     msgbox2->show();
-}
-
-void lesson_maker :: edit()
-{
-    QSqlTableModel *model = new QSqlTableModel;
-    model->setTable("lessons");
-    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    model->select();
-    QTableView *view = new QTableView;
-    view->setModel(model);
-    view->show();
 }
